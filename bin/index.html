@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文物锦囊</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+  body{
+  	background-color: #121E08;
+  }
+    /* 默认隐藏推荐和分类板块 */
+    #recommendations,
+    #categories {
+      display: none;
+    }
+
+    /* 修改导航栏样式 */
+    nav {
+    	margin: 0;
+
+      background-color: #363B31;
+      overflow: hidden;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    nav li {
+      float: left;
+    }
+
+    nav a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    nav .right {
+      float: right;
+    }
+    
+    .slideshow {
+  display: flex;
+  align-items: center; /* 垂直居中对齐 */
+}
+
+    /* 搜索框样式 */
+    .search-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end; /* 搜索框所在行背景色 */
+      padding: 8px; /* 添加一些内边距 */
+    }
+
+    .search-container input[type=text] {
+      padding: 8px;
+      margin: 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .search-container button {
+      padding: 8px 16px;
+      background-color: #999;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    /* 卡片样式 */
+    .cards {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  background-color: #3C4F2C;
+  margin-left: 5%;
+    margin-right: 5%;
+  margin-top: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px;
+}
+
+.card img {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 3%;
+	margin-right: 3%;
+  width: 300px;
+  height: 200px;
+}
+
+.text {
+  flex: 1;
+  margin-right: 20px;
+  text-align: left; /* 文字左对齐 */
+  color: #fff; /* 设置文本颜色为白色 */
+}
+
+.text h3 {
+	margin-top: 50px;
+  margin-bottom: 10px; /* 调整标题与段落之间的间距 */
+ margin-right: 20px;
+  color: #FAE21C; /* 设置标题颜色为白色 */
+}
+
+.text p {
+  color: #fff; /* 设置文本颜色为白色 */
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row {
+	margin-left: 10%;
+  display: flex;
+}
+
+.cards_ {
+	
+  flex: 0 0 calc(15%); /* 每个项目宽度为页面宽度的15%，减去3%的间距 */
+  margin-top: 20px;
+  margin-right: 7%; /* 设置右侧间距为页面宽度的3% */
+}
+
+.square-item {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-bottom: 100%;/* 设置容器的上内边距为100%，使其高度与宽度相等 */
+            background-color: #fff;
+        }
+ 
+        .square-item img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /*根据父容器的尺寸裁剪和缩放图片，以填充整个容器，并保持长宽比例不变。*/
+            object-position: center; /*指定对象的位置，如果不设置，则默认是center*/
+            background-size: cover; /*背景图片的大小，如果不设置，则默认是auto*/
+            background-position: center; 
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);/*将元素移动到中心*/
+        }
+
+.cards_ h3 {
+  text-align: center;
+  
+  color: #B8A12D;
+}
+  </style>
+</head>
+<body>
+  <!-- 导航栏 -->
+  <nav>
+    <ul>
+      <li><a href="index.html">主页</a></li>
+      <li><a href="3d_exhibition.html">文物3D展示</a></li>
+      <li class="right"><a href="login.html" id="loginLink">登录</a></li>
+      <li class="right"><a href="profile.html" id="profileLink">个人</a></li>
+      <li class="right"><a href="#" id="logoutLink" onclick="logout()">退出登录</a></li>
+      <li class="right"><a id="uploadLink" href="#">文物上传</a></li>
+    </ul>
+  </nav>
+
+  <!-- 轮播图 -->
+  <div class="slideshow">
+  	<a class="prev" onclick="plusSlides(-1)"><img src="img/previous.png" width="35" height="100"></a>
+    <div class="slides">
+      <img src="img/pic1.png" alt="pic1" width=1330px height="350">
+      <img src="img/pic2.png" alt="pic2"  width=1330px height="350">
+      <img src="img/pic3.png" alt="pic3"  width=1330px height="350">
+      <img src="img/pic4.png" alt="pic4"  width=1330px height="350">
+    </div>
+    <a class="next" onclick="plusSlides(1)"><img src="img/next.png" width="35" height="67"></a>
+  </div>
+
+  <!-- 文物分类、搜索、今日推荐 -->
+ <nav>
+    <ul>
+      <li><a href="#" onclick="showRecommendations()">今日推荐</a></li>
+      <li><a href="#" onclick="showCategories()">文物分类</a></li>
+    <div class="search-container">
+      <input type="text" placeholder="搜索文物">
+      <button type="submit">搜索</button>
+    </div>
+     </ul>
+  </nav>
+    <!-- 今日推荐卡片 -->
+    <div id="recommendations" class="cards">
+  <div class="card">
+    <img src="img/r1.png" alt="Recommendation 1">
+    <div class="text">
+      <h3>“让文物说话、把历史智慧告诉人们”——习近平情系历史文化遗产的故事</h3>
+      <p>保护好、传承好历史文化遗产是对历史负责、对人民负责。从良渚古城遗址申遗到大运河文化带建设，从敦煌研究院座谈到云冈石窟考察，从指出“丰富的历史文化遗产是一张金名片”到强调“一个博物馆就是一所大学校”……站在全面建成小康社会、守住民族之魂的战略高度，习近平总书记关心和推动历史文化遗产的保护传承工作，留下了一段段动人故事。</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="img/r1.png" alt="Recommendation 1">
+    <div class="text">
+      <h3>“让文物说话、把历史智慧告诉人们”——习近平情系历史文化遗产的故事</h3>
+      <p>保护好、传承好历史文化遗产是对历史负责、对人民负责。从良渚古城遗址申遗到大运河文化带建设，从敦煌研究院座谈到云冈石窟考察，从指出“丰富的历史文化遗产是一张金名片”到强调“一个博物馆就是一所大学校”……站在全面建成小康社会、守住民族之魂的战略高度，习近平总书记关心和推动历史文化遗产的保护传承工作，留下了一段段动人故事。</p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="img/r1.png" alt="Recommendation 1">
+    <div class="text">
+      <h3>“让文物说话、把历史智慧告诉人们”——习近平情系历史文化遗产的故事</h3>
+      <p>保护好、传承好历史文化遗产是对历史负责、对人民负责。从良渚古城遗址申遗到大运河文化带建设，从敦煌研究院座谈到云冈石窟考察，从指出“丰富的历史文化遗产是一张金名片”到强调“一个博物馆就是一所大学校”……站在全面建成小康社会、守住民族之魂的战略高度，习近平总书记关心和推动历史文化遗产的保护传承工作，留下了一段段动人故事。</p>
+    </div>
+  </div>
+</div>
+      
+    <!-- 文物分类 -->
+   <div id="categories" class="cards_" style="display: none;">
+   	<div class="row">
+      <div class="cards_" onclick="navigateToCategory('pottery')">
+        <div class="square-item">
+        <img src="img/pottery.jpg" alt="Pottery">
+        </div>
+        <h3>陶器</h3>
+      </div>
+      <div class="cards_" onclick="navigateToCategory('bronze')">
+        <div class="square-item">
+        <img src="img/bronze.jpg" alt="Bronze">
+        </div>
+        <h3>铜器</h3>
+      </div>
+      <div class="cards_" onclick="navigateToCategory('porcelain')">
+        <div class="square-item">
+        <img src="img/porcelain.jpg" alt="Porcelain">
+        </div>
+        <h3>瓷器</h3>
+      </div>
+      <div class="cards_" onclick="navigateToCategory('gold_silver')">
+       <div class="square-item">
+       <img src="img/gold_silver.jpg" alt="Gold and Silver">
+       </div>
+       <h3>金银器</h3>
+      </div>
+      <div class="cards_" onclick="navigateToCategory('wood')">
+        <div class="square-item">
+        <img src="img/wood.jpg" alt="wood">
+        </div>
+        <h3>木漆器</h3>
+       </div>
+      </div>
+      <div class="row">
+      <div class="cards_" onclick="navigateToCategory('jade')">
+        <div class="square-item">
+        <img src="img/jade.jpg" alt="Jade">
+        </div>
+        <h3>玉器</h3>
+      </div>
+      <div class="cards_" onclick="navigateToCategory('textile')">
+        <div class="square-item">
+        <img src="img/textile.jpg" alt="Textile">
+        </div>
+        <h3>织绣</h3>
+      </div>
+      <div class="cards_" onclick="navigateToCategory('calligraphy_painting')">
+        <div class="square-item">
+        <img src="img/calligraphy_painting.jpg" alt="Calligraphy and Painting">
+        </div>
+        <h3>书画</h3>
+      </div>
+      <div class="cards_" onclick="navigateToCategory('ethnic_artifacts')">
+        <div class="square-item">
+        <img src="img/ethnic_artifacts.jpg" alt="Ethnic Artifacts">
+        </div>
+        <h3>民族文物</h3>
+      </div>
+      <div class="cards_" onclick="navigateToCategory('others')">
+        <div class="square-item">
+        <img src="img/others.jpg" alt="others">
+        </div>
+        <h3>其他文物</h3>
+      </div>
+      </div>
+    </div>
+</div>
+
+<script>
+window.onload = function() {
+  // 检查登录状态
+  var isLoggedIn = localStorage.getItem('isLoggedIn');
+  if (isLoggedIn === 'true') {
+    // 登录成功，隐藏登录链接，显示个人和退出登录链接
+    document.getElementById('loginLink').style.display = 'none';
+    document.getElementById('profileLink').style.display = 'block';
+    document.getElementById('logoutLink').style.display = 'block';
+  } else {
+    // 未登录，显示登录链接，隐藏个人和退出登录链接
+    document.getElementById('loginLink').style.display = 'block';
+    document.getElementById('profileLink').style.display = 'none';
+    document.getElementById('logoutLink').style.display = 'none';
+  }
+};
+function logout() {
+  // 清除本地存储中的登录状态
+  localStorage.removeItem('isLoggedIn');
+  // 保存当前页面的 URL
+  localStorage.setItem('previousURL', window.location.href);
+  // 跳转到登录页面
+  window.location.href = 'index.html';
+}
+document.addEventListener("DOMContentLoaded", function() {
+  // 监听文物上传链接的点击事件
+  document.getElementById("uploadLink").addEventListener("click", function(event) {
+    event.preventDefault(); // 阻止默认事件
+
+    // 创建一个隐藏的文件上传 input 元素
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'video/*'; // 只接受视频文件
+
+    // 监听文件选择事件
+    fileInput.addEventListener('change', function() {
+      var file = fileInput.files[0]; // 获取用户选择的文件
+      if (file) {
+        // 这里你可以编写上传文件的逻辑，比如通过 AJAX 将文件上传到服务器
+        console.log("已选择文件:", file.name);
+        // 这里可以调用上传函数，比如 uploadFile(file);
+      } else {
+        console.log("未选择文件.");
+      }
+    });
+
+    // 模拟点击文件上传 input 元素
+    fileInput.click();
+  });
+});
+  slideIndex = 0;
+  function showSlides() {
+    const slides = document.querySelectorAll('.slides img');
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = 'none';  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {
+      slideIndex = 1;  
+    }
+    slides[slideIndex - 1].style.display = 'block';  
+    setTimeout(showSlides, 2000); 
+  }
+  showSlides();
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  function showRecommendations() {
+    document.getElementById('recommendations').style.display = 'block';
+    document.getElementById('categories').style.display = 'none';
+  }
+  function showCategories() {
+    document.getElementById('recommendations').style.display = 'none';
+    document.getElementById('categories').style.display = 'block';
+  }
+  // 初始显示今日推荐
+  showRecommendations();
+   function navigateToCategory(category) {
+    // 根据分类构建跳转链接
+    var url = category + '.html';
+    // 执行页面跳转
+    window.location.href = url;
+  }
+  document.addEventListener("DOMContentLoaded", function() {
+  // 监听文物上传链接的点击事件
+  document.getElementById("uploadLink").addEventListener("click", function(event) {
+    event.preventDefault(); // 阻止默认事件
+
+    // 创建一个隐藏的文件上传 input 元素
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'video/*'; // 只接受视频文件
+
+    // 监听文件选择事件
+    fileInput.addEventListener('change', function() {
+      var file = fileInput.files[0]; // 获取用户选择的文件
+      if (file) {
+        alert("上传成功！")
+        console.log("已选择文件:", file.name);
+        // 这里可以调用上传函数，比如 uploadFile(file);
+      } else {
+        console.log("未选择文件.");
+        alert("上传失败！")
+      }
+    });
+
+    // 模拟点击文件上传 input 元素
+    fileInput.click();
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<html lang="zh-CN"><head>
+    <meta charset="utf-8">
+
+    <title></title>
+
+    <link rel="canonical" href="https://v5.bootcss.com/docs/examples/album/">
+
+
+
+
+
+<link href="bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- Favicons -->
+<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#712cf9">
+
+
+    <style>
+        body {
+            /*background-image: url('greatwall.jpg'); !* 背景图片 *!*/
+            background-size: cover;
+            background-position: center;
+            background-color: #3C4F2C;
+            background-repeat: no-repeat;
+            opacity: 0.9;/* Adjust the alpha (last) value for opacity */
+            transition: background-image 1s ease-in-out;
+        }
+
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      .nav-a{
+        color: #ffffff;
+      }
+    </style>
+
+
+
+
+  </head>
+  <body data-version="4.0.5" data-settings-changed-at="0" data-cid="1709081277970">
+<!--<script>-->
+<!--        /* 定义图片数组，存储要轮播的图片路径*/-->
+<!--        const imageArray = [-->
+<!--            '/desert.jpg',-->
+<!--            '/pyrmaid.jpg', // 添加更多图片路径-->
+<!--            '/rock.jpg',-->
+<!--          '/greatwall.jpg',-->
+<!--        ];-->
+
+<!--        /*// 获取body元素*/-->
+<!--        const bodyElement = document.body;-->
+
+<!--        /*// 初始化图片索引*/-->
+<!--        let currentImageIndex = 0;-->
+
+<!--        /*// 定时更换背景图片函数*/-->
+<!--        function changeBackgroundImage() {-->
+<!--            // 切换图片-->
+<!--            bodyElement.style.backgroundImage = `url('${imageArray[currentImageIndex]}')`;-->
+
+<!--            // 增加图片索引，确保在数组范围内-->
+<!--            currentImageIndex = (currentImageIndex + 1) % imageArray.length;-->
+<!--        }-->
+
+<!--        /*// 设置定时器，每隔一定时间调用函数*/-->
+<!--        setInterval(changeBackgroundImage,10000); // 每10秒切换一次背景图片-->
+    </script>
+<!-- 导航栏 -->
+<!-- 导航栏 -->
+<div class="navbar navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid d-flex justify-content-start align-items-center">
+    <!-- 左侧按钮1 -->
+    <a class="nav-a  collapsed" style="text-decoration: none" type="button" data-bs-toggle="collapse" data-bs-target="#leftNavbar" aria-controls="leftNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span>主页</span>
+    </a>
+
+    <!-- 左侧按钮2 -->
+    <a class="nav-a  collapsed ms-2" style="text-decoration: none" type="button" data-bs-toggle="collapse" data-bs-target="#leftNavbar2" aria-controls="leftNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+      <span>文物3D展示</span>
+    </a>
+
+    <!-- 导航栏标题 -->
+    <div class="ms-auto">
+
+    </div>
+
+    <!-- 右侧按钮1 -->
+    <a href="#" class="nav-a collapsed me-0" id="uploadButton" data-bs-toggle="collapse" data-bs-target="#rightNavbar" aria-controls="rightNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span>文物上传</span>
+    </a>
+
+    <!-- 右侧按钮2 -->
+    <a href="#" style="text-decoration: none" class="nav-a collapsed ms-2" data-bs-toggle="collapse" data-bs-target="#rightNavbar2" aria-controls="rightNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+      <span>登录</span>
+    </a>
+  </div>
+</div>
+
+
+
+
+
+<script>
+    document.getElementById('uploadButton').addEventListener('click', function () {
+        // 触发文件上传输入框的点击事件
+        document.getElementById('fileInput').click();
+    });
+
+    // 监听文件上传输入框的改变事件
+    document.getElementById('fileInput').addEventListener('change', function () {
+        // 获取选择的文件
+        const selectedFile = this.files[0];
+
+
+        // 在这里可以进行文件上传的操作，例如上传到服务器等
+        // 这里只是演示，你可以根据需要进行相应的处理
+        if (selectedFile) {
+            alert('上传成功: ' + selectedFile.name);
+        }
+    });
+  </script>
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light" style="font-weight: 500 !important;">文物分类</h1>
+        <p class="lead text-muted" style="font-weight: bolder">选择你想要查询的文物类别，点击搜索</p>
+        <p>
+<!--          <a href="#" class="btn btn-primary my-2">Main call to action</a>-->
+
+          <div class="btn-group">
+              <select id="selectBox" class="btn btn-secondary" onchange="location = this.value;">
+                <option value="Pottery" selected>陶器</option>
+                <option value="Bronze">青铜器</option>
+                <option value="Procelain">瓷器</option>
+                <option value="GoldSilver">金银器</option>
+                <option value="EthnicArtifacts">木漆器</option>
+                <option value="Jade">玉器</option>
+                <option value="Textile">织绣</option>
+                <option value="CalligraphyPainting">书画</option>
+                <option value="EthnicArtifacts">民族文物</option>
+                <option value="Others">其他文物</option>
+              </select>
+            </div>
+        <button onclick="getSelectedValue()" class="btn btn-secondary my-2" style="margin-left: 50px">搜索</button>
+
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+
+
+    <script src="bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js" integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim" crossorigin="anonymous"></script>
+
+
+
+
+<div style="position: fixed; z-index: 10000; right: -99999px; border: 1px solid;"><canvas width="100" height="100"></canvas></div><div style="position: fixed; z-index: 10000; right: -99999px; border: 1px solid;"><canvas width="100" height="100"></canvas></div></body></html>
